@@ -1,53 +1,52 @@
+package git停车接口;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public interface IParking {
-
-    void printParkingAvailabilitySequentialy();
-
-    boolean parkCar(int carType);
-
-    static IParams inputParams() {
-        int bigPSpace, mediumPSpace, smallPSpace;
-        ArrayList<Integer> parkingPlan = new ArrayList<>();
-        Scanner sc = new Scanner(System.in);
-        System.out.println("请设置停车系统拥有的大车位：（输入一个整数并回车）");
-        bigPSpace = sc.nextInt();
-        System.out.println("请设置停车系统拥有的中车位：（输入一个整数并回车）");
-        mediumPSpace = sc.nextInt();
-        System.out.println("请设置停车系统拥有的小车位：（输入一个整数并回车）");
-        smallPSpace = sc.nextInt();
-        System.out.println("请依次输入想停的车（1/2/3），每输入一辆车，按回车；结束请输入0。");
-        while(true) {
-            int nextCar = sc.nextInt();
-            if(nextCar == 1 || nextCar == 2 || nextCar == 3) {
-                parkingPlan.add(nextCar);
-            }
-            else if(nextCar == 0) {
-                break;
-            }
-        }
-        return new IParams() {
-            @Override
-            public int getBigPSpace() {
-                return bigPSpace;
-            }
-
-            @Override
-            public int getMediumPSpace() {
-                return mediumPSpace;
-            }
-
-            @Override
-            public int getSmallPSpace() {
-                return smallPSpace;
-            }
-
-            @Override
-            public ArrayList<Integer> getParkingPlan() {
-                return parkingPlan;
-            }
-        };
-    }
-
+	//打印输出结果
+	void printParkingAvailabilitySequentialy();
+	//检查是否有carType对应的停车位
+	//如果没有停车位，返回false，否则返回true
+	boolean parkCar(int carType);
+	//解析命令行输入参数
+	 static IParams inputParams() {
+		int small_car,medium_car,big_car;//车的数量
+		ArrayList<Integer> parkingPlan = new ArrayList<>();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("输入系统中大车停车位的数量:");
+		big_car = sc.nextInt();
+		System.out.println("输入系统中中等车停车位的数量:");
+		medium_car = sc.nextInt();
+		System.out.println("输入系统中小车停车位的数量:");
+		small_car = sc.nextInt();
+		System.out.println("依次输入想停的车（1/2/3）结束请输入0");
+		while(true) {
+			int add_car=sc.nextInt();
+			if(add_car==1 ||add_car==2 ||add_car==3 ) {
+				parkingPlan.add(add_car);
+			}
+			else if (add_car==0) {
+				break;
+			}
+		}
+	  return new IParams() {
+          @Override
+          public int getBig_car() {
+              return big_car;
+          }
+          @Override
+          public int getMedium_car() {
+              return medium_car;
+          }
+          @Override
+          public int getSmall_car() {
+              return small_car;
+          }
+          @Override
+          public ArrayList<Integer> getParkingPlan() {
+              return parkingPlan;
+          }
+	  };
+  }
 }
