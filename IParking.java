@@ -2,7 +2,7 @@ package git停车接口;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+                                     
 public interface IParking {
 	//打印输出结果
 	void printParkingAvailabilitySequentialy();
